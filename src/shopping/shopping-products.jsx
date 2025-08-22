@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 
 export function ShoppingProducts(){
@@ -8,6 +8,7 @@ export function ShoppingProducts(){
     const [products, setProducts] = useState([{id:0, title:null, price:0, description:null, category:null, image:null, rating:{rate:0, count:0}}]);
 
     let params = useParams();
+    let navigate = useNavigate();
 
     useEffect(()=>{
 
@@ -17,6 +18,10 @@ export function ShoppingProducts(){
         })
 
     },[])
+
+    function handleHomeClick(){
+        navigate('/');
+    }
 
     return(
         <div>
@@ -31,6 +36,7 @@ export function ShoppingProducts(){
                         }
                     </ol>
                     <Link to="/">Back to Home</Link>
+                    <button onClick={handleHomeClick} className="btn mx-2 btn-primary bi bi-house-door"> Home </button>
                 </div>
                 <div className="col-4">
                       <Outlet />
