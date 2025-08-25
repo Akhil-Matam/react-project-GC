@@ -31,9 +31,11 @@ import { FakestoreIndex } from './fakestore/fakestore-index.jsx'
 import { ReducerDemo } from './components/reducer-demo/reducer-demo.jsx'
 import { PortfolioIndex } from './portfolio/portfolio-index.jsx'
 import { ShoppingIndex } from './shopping/shopping-index.jsx'
+import { VideoTutorialHome } from './video-tutorials/video-tutorial-home.jsx'
+import { VideoTutorialIndex } from './video-tutorials/video-tutorial-index.jsx'
 
 createRoot(document.getElementById('root')).render(
   
-    <ShoppingIndex/>
+    <VideoTutorialIndex/>
   
 )
