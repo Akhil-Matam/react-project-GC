@@ -33,9 +33,12 @@ import { PortfolioIndex } from './portfolio/portfolio-index.jsx'
 import { ShoppingIndex } from './shopping/shopping-index.jsx'
 import { VideoTutorialHome } from './video-tutorials/video-tutorial-home.jsx'
 import { VideoTutorialIndex } from './video-tutorials/video-tutorial-index.jsx'
+import { CookiesProvider } from 'react-cookie'
 
 createRoot(document.getElementById('root')).render(
   
-    <VideoTutorialIndex/>
+    <CookiesProvider>
+        <VideoTutorialIndex/>
+    </CookiesProvider>
   
 )
