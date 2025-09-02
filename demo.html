@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
-     <script>
-          var uname = "";
-          function NameChange(){
-               uname = document.getElementById("Uname").value;
-               document.querySelector("p").textContent = uname;
-          }
-     </script>
-</head>
-<body>
-     <h2>User Name</h2>
-     <input type="text" id="Uname" onchange="NameChange()">
-     <p></p>
-</body>
-</html>
+<script>
+    class Super
+    {
+      constructor(){
+           document.write("Super Constructor<br>");
+      }
+    }
+    class Derived extends Super 
+    {
+        constructor(){
+           super();
+           document.write("Derived Constructor");
+        }
+    }
+    let obj = new Derived();
+</script>
