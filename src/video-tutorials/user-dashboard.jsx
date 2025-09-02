@@ -2,12 +2,16 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToWatchLater } from "../slicers/slicer"; 
+import store from "../store/store";
 
 export function UserDashboard(){
 
     const [videos, setVideos] = useState([{id:0, title:null, description:null, url:null, likes:0, views:0, dislikes:0, comments:null, category_id:0}]);
    
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     function handleSignout(){
         removeCookie('admin_id');
@@ -26,6 +30,10 @@ export function UserDashboard(){
             LoadVideos();
           
     },[])
+
+    function handleSaveClick(video){
+        dispatch(addToWatchLater(video));
+    }
     return(
         <div className="bg-light p-2">
             <nav className="d-flex justify-content-between">
@@ -37,7 +45,7 @@ export function UserDashboard(){
                     </div>
                 </div>
                 <div>
-                    <span className="bi bi-save"></span>
+                    <span className="bi bi-save"> {store.getState().videosCount} Videos </span>
                 </div>
             </nav>
             <div className="d-flex flex-wrap">
@@ -56,7 +64,7 @@ export function UserDashboard(){
                                 <span className="bi bi-hand-thumbs-up mx-3 "> {video.likes} </span>
                                  <span className="bi bi-hand-thumbs-down "> {video.dislikes} </span>
                                 <div> 
-                                    <button className="btn w-100 btn-success bi bi-save2-fill"></button>
+                                    <button onClick={()=> {handleSaveClick(video)}} className="btn w-100 btn-success bi bi-save2-fill"></button>
                                 </div> 
                             </div>
                         </div>
