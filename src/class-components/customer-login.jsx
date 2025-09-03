@@ -1,33 +1,41 @@
 import React from "react";
+import axios from "axios";
+import { Field, Form, Formik } from "formik";
+import { Nav } from "../controlled-components/nav";
+import { EMICalculator } from "../components/emi-calculator/emi-calculator";
 
 export class CustomerLogin extends React.Component
 {
       constructor(){
           super();
           this.state = {
-              title: "Class Components",
-              msg: ""
+              
           }
-          this.handleInsertClick = this.handleInsertClick.bind(this);
+          
       }
+      
       componentDidMount(){
-         this.setState({title: "Select Category"})
+         
       }
 
-      handleInsertClick(e){
-         this.setState({msg: `${e.target.value} Clicked`});
-      }
-      handleDeleteClick(e){
-         this.setState({msg: `${e.target.value} Clicked`});
-      }
 
       render(){
          return(
             <div className="container-fluid p-4">
-                <h2>{this.state.title}</h2>
-                <button onClick={this.handleInsertClick} value='Insert'>Insert</button>
-                <button onClick={this.handleDeleteClick.bind(this)} value='Delete'>Delete</button>
-                <p>{this.state.msg}</p>
+               <EMICalculator />
+               <Nav title='Shopping' navItems={['Home','Shop','Blog','Pages']}></Nav>
+               <h3>Register</h3>
+               <Formik initialValues={{UserName:'', Mobile:''}} onSubmit={(user)=>{console.log(user)}} >
+                  <Form>
+                     <dl>
+                        <dt>User Name</dt>
+                        <dd> <Field type="text" name="UserName"></Field> </dd>
+                        <dt>Mobile</dt>
+                        <dd> <Field type="text" name="Mobile"></Field> </dd>
+                     </dl>
+                     <button type="submit">Register</button>
+                  </Form>
+               </Formik>
             </div>
          )
       }
